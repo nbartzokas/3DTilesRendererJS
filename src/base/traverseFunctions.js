@@ -144,6 +144,13 @@ export function determineFrustumSet( tile, renderer ) {
 
 	}
 
+	if (renderer.maxDistance) {
+		renderer.calculateError(tile);
+		if (tile.__distanceFromCamera > renderer.maxDistance) {
+			return false;
+		}
+	}
+
 	tile.__used = true;
 	lruCache.markUsed( tile );
 
